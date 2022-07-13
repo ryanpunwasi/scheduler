@@ -11,7 +11,7 @@ const InterviewerListItem = (props) => {
   };
 
   return (
-    <li key={props.id} className={classNames(listItemClass)} onClick={() => props.setInterviewer(props.id)}>
+    <li key={props.id} className={classNames(listItemClass)} onClick={props.setInterviewer}>
       <img
         className="interviewers__item-image"
         src={props.avatar}
