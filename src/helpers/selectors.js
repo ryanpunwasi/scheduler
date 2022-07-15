@@ -15,7 +15,6 @@ export function getInterview(state, interview) {
 
   if (interviewer in state.interviewers) {
     const interviewerObj = state.interviewers[interviewer];
-    console.log({ ...interview, interviewer: interviewerObj });
     return { ...interview, interviewer: interviewerObj };
   }
 
