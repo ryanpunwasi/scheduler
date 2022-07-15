@@ -4,7 +4,7 @@ import Show from "./Show";
 import Empty from "./Empty";
 
 const Appointment = (props) => {
-  const { id, time, interview } = props;
+  const { interview } = props;
   return (
     <article className="appointment">
       <Header time={props.time}/>
