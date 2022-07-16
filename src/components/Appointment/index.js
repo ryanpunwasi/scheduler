@@ -14,7 +14,6 @@ const Appointment = (props) => {
     props.interview ? SHOW : EMPTY
   );
 
-  const { interview } = props;
   return (
     <article className="appointment">
       <Header time={props.time}/>
@@ -27,7 +26,7 @@ const Appointment = (props) => {
       )}
       {mode === CREATE && (
         <Form
-          interviewers={[]}
+          interviewers={props.interviewers}
           onCancel={back}
         />
       )}
