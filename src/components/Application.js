@@ -43,17 +43,33 @@ export default function Application(props) {
     };
 
     return axios.put(`/api/appointments/${id}`, appointment)
-    .then(res => {
+    .then(() => {
       setState({...state, appointments });
     })
     .catch(err => console.log(err));
     
   }
 
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.delete(`api/appointments/${id}`)
+    .then(() => setState({ ...state, appointments }))
+    .catch(err => console.log(err));
+  }
+
   const renderedAppointments = Object.values(dailyAppointments).map(appointment => {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day);
-    return <Appointment key={appointment.id} {...appointment} interview={interview} interviewers={interviewers} bookInterview={bookInterview}/>
+    return <Appointment key={appointment.id} {...appointment} interview={interview} interviewers={interviewers} bookInterview={bookInterview} cancelInterview={cancelInterview}/>
   });
 
   return (

@@ -4,6 +4,7 @@ import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import Status from './Status';
+import Confirm from './Confirm';
 import useVisualMode from 'hooks/useVisualMode';
 
 const Appointment = (props) => {
@@ -11,6 +12,8 @@ const Appointment = (props) => {
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
+  const CONFIRM = "CONFIRM";
+  const EDIT= "EDIT";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -27,6 +30,14 @@ const Appointment = (props) => {
     .finally(() => transition(SHOW));
   }
 
+  function cancel() {
+    transition(SAVING);
+    props.cancelInterview(props.id)
+    .finally(() => {
+      transition(EMPTY);
+    });
+  }
+
   return (
     <article className="appointment">
       <Header time={props.time}/>
@@ -35,6 +46,8 @@ const Appointment = (props) => {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
         />
       )}
       {mode === CREATE && (
@@ -44,9 +57,25 @@ const Appointment = (props) => {
           onCancel={back}
         />
       )}
+      {mode === EDIT && (
+        <Form
+          student={props.interview.student}
+          interviewer={props.interview.interviewer.id} 
+          interviewers={props.interviewers}
+          onSave={save}
+          onCancel={back}
+        />
+      )}
       {mode === SAVING && (
         <Status
           message="Saving..."
+        />
+      )}
+      {mode === CONFIRM && (
+        <Confirm
+        message="Cancel appointment?"
+        onConfirm={cancel}
+        onCancel={back}
         />
       )}
     </article>
