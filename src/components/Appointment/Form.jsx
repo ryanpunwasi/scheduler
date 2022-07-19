@@ -7,11 +7,11 @@ import "./styles.scss";
 const Form = props => {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  const [studentError, setStudentError] = useState("");
-  const [interviewerError, setInterviewerError] = useState("");
+  const [error, setError] = useState("");
 
   const reset = () => {
     setStudent("");
+    setError("");
     setInterviewer(null);
   };
 
@@ -22,15 +22,16 @@ const Form = props => {
 
   function validate() {
     if (student === "") {
-      setStudentError("Student name cannot be blank.");
+      setError("Student name cannot be blank.");
       return;
     }
 
     if (interviewer === null) {
-      setInterviewerError("Please select an interviewer.");
+      setError("Please select an interviewer.");
       return;
     }
 
+    setError("");
     props.onSave(student, interviewer);
   }
 
@@ -47,16 +48,15 @@ const Form = props => {
             placeholder="Enter Student Name"
             data-testid="student-name-input"
           />
-          <section className="appointment__validation">{studentError}</section>
+          {error && (
+            <section className="appointment__validation">{error}</section>
+          )}
         </form>
         <InterviewerList
           value={interviewer}
           onChange={setInterviewer}
           interviewers={props.interviewers}
         />
-        <section className="appointment__validation">
-          {interviewerError}
-        </section>
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
