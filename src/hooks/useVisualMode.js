@@ -8,9 +8,11 @@ export default function useVisualMode(initial) {
     setMode(newMode);
 
     const newHistory = [...history];
+
     if (replace) {
       newHistory.pop();
     }
+    
     newHistory.push(newMode);
     setHistory(newHistory);
   };
