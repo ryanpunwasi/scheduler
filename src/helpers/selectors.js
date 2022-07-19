@@ -5,12 +5,13 @@ export function getAppointmentsForDay(state, day) {
     return [];
   }
 
-  let filteredAppointments = filteredDay[0].appointments.map(appointmentId => state.appointments[appointmentId]);
+  let filteredAppointments = filteredDay[0].appointments.map(
+    appointmentId => state.appointments[appointmentId]
+  );
   return filteredAppointments;
 }
 
 export function getInterview(state, interview) {
-
   const { interviewer } = interview || {};
 
   if (interviewer in state.interviewers) {
@@ -28,20 +29,23 @@ export const getInterviewersForDay = (state, day) => {
     return [];
   }
 
-  let interviewers = filteredDay[0].interviewers.map(interviewerId => state.interviewers[interviewerId]);
+  let interviewers = filteredDay[0].interviewers.map(
+    interviewerId => state.interviewers[interviewerId]
+  );
   return interviewers;
-}
+};
 
-export const updateSpots = (state) => {
-  const appointmentsForDay = getAppointmentsForDay(state, state.day);
-  const spots = appointmentsForDay.filter((appointment) => !appointment.interview).length;
-
-  const currentDayIndex = state.days.findIndex((day) => day.name === state.day);
+export const updateSpots = state => {
+  const appointmentsForDay = getAppointmentsForDay(state, state.day); // Refactor: not encapsulated
+  const currentDayIndex = state.days.findIndex(day => day.name === state.day);
   const currentDay = state.days[currentDayIndex];
+  const spots = currentDay.appointments.filter(
+    id => !state.appointments[id].interview
+  ).length;
 
   const updatedDayObject = { ...currentDay, spots };
   const updatedDays = [...state.days];
   updatedDays[currentDayIndex] = updatedDayObject;
-  
+
   return { ...state, days: updatedDays };
 };
