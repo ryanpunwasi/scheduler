@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { updateSpots } from 'helpers/selectors';
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
@@ -21,6 +21,7 @@ export default function useApplicationData() {
     });
   }, []);
 
+
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -34,9 +35,17 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, appointment)
     .then(() => {
-      setState({...state, appointments });
+
+      setState(prev => {
+        return { ...prev, appointments };
+      });
+
+      setState(prev => {
+        const newState = updateSpots(prev);
+        return newState;
+      });
+      
     });
-    
   }
 
   function cancelInterview(id) {
@@ -51,7 +60,18 @@ export default function useApplicationData() {
     };
 
     return axios.delete(`api/appointments/${id}`)
-    .then(() => setState({ ...state, appointments }));
+    .then(() => {
+
+      setState(prev => {
+        return { ...prev, appointments };
+      });
+
+      setState(prev => {
+        const newState = updateSpots(prev);
+        return newState;
+      });
+
+    });
   }
 
   return {

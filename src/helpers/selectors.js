@@ -31,3 +31,17 @@ export const getInterviewersForDay = (state, day) => {
   let interviewers = filteredDay[0].interviewers.map(interviewerId => state.interviewers[interviewerId]);
   return interviewers;
 }
+
+export const updateSpots = (state) => {
+  const appointmentsForDay = getAppointmentsForDay(state, state.day);
+  const spots = appointmentsForDay.filter((appointment) => !appointment.interview).length;
+
+  const currentDayIndex = state.days.findIndex((day) => day.name === state.day);
+  const currentDay = state.days[currentDayIndex];
+
+  const updatedDayObject = { ...currentDay, spots };
+  const updatedDays = [...state.days];
+  updatedDays[currentDayIndex] = updatedDayObject;
+  
+  return { ...state, days: updatedDays };
+};
