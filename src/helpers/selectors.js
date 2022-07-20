@@ -36,7 +36,6 @@ export const getInterviewersForDay = (state, day) => {
 };
 
 export const updateSpots = state => {
-  const appointmentsForDay = getAppointmentsForDay(state, state.day); // Refactor: not encapsulated
   const currentDayIndex = state.days.findIndex(day => day.name === state.day);
   const currentDay = state.days[currentDayIndex];
   const spots = currentDay.appointments.filter(
