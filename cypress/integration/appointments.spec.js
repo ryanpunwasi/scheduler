@@ -14,7 +14,7 @@ describe("Appointment", () => {
     cy.contains(".appointment__card--show", "Sylvia Palmer");
   });
 
-  it("edit book an interview", () => {
+  it("should edit an interview", () => {
     cy.get("[alt=Edit]").click({ force: true });
     cy.get("[data-testid=student-name-input]")
       .clear()
@@ -25,7 +25,7 @@ describe("Appointment", () => {
     cy.contains(".appointment__card--show", "Tori Malcolm");
   });
 
-  it("delete book an interview", () => {
+  it("should delete an interview", () => {
     cy.get("[alt=Delete]").click({ force: true });
     cy.get("button").contains("Confirm").click();
     cy.contains("Deleting...").should("exist");
