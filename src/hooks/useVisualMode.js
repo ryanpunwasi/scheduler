@@ -8,18 +8,8 @@ export default function useVisualMode(initial) {
     if (replace) {
       return setMode(newMode);
     }
-
     setMode(newMode);
-    setHistory([...history, newMode]);
-
-    // const newHistory = [...history];
-
-    // if (replace) {
-    //   newHistory.pop();
-    // }
-
-    // newHistory.push(newMode);
-    // setHistory(newHistory);
+    return setHistory([...history, newMode]);
   };
 
   const back = () => {
@@ -27,7 +17,7 @@ export default function useVisualMode(initial) {
       const newHistory = [...history];
       newHistory.pop();
       setMode(newHistory.at(-1));
-      setHistory(newHistory);
+      return setHistory(newHistory);
     }
   };
 
