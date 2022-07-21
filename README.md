@@ -1,14 +1,20 @@
 # Interview Scheduler
 
-A single-page application built with React that allows users to book and cancel interviews.
+A single-page application built with React that allows users to view, book, edit and cancel interviews.
 
 ## Screenshots
 
-!["List of appointments"]("https://github.com/ryanpunwasi/scheduler/blob/master/docs/appointments.png?raw=true")
+_List of appointments_
 
-!["Appointment form"]("https://github.com/ryanpunwasi/scheduler/blob/master/docs/appointment-form.png?raw=true")
+![List of appointments](docs/appointments.png)
 
-!["Cancellation Prompt"]("https://github.com/ryanpunwasi/scheduler/blob/master/docs/cancellation-prompt.png?raw=true")
+_Appointment form_
+
+![Appointment form](docs/appointment-form.png)
+
+_Cancellation Prompt_
+
+![Cancellation Prompt](docs/cancellation-prompt.png)
 
 ## Setup
 
@@ -20,7 +26,7 @@ Clone repo and install dependencies with `npm install`.
 npm start
 ```
 
-The Webpack Development Server will run on http://localhost:8000
+The Webpack Development Server will run on http://localhost:8000.
 
 ## Running Jest Test Framework
 
@@ -33,3 +39,10 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Dependencies
+
+- Axios
+- react
+- @testing-library/react-hooks
+- react-test-renderer
