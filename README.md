@@ -4,11 +4,11 @@ A single-page application built with React that allows users to book and cancel 
 
 ## Screenshots
 
-!["List of appointments"]("https://raw.githubusercontent.com/ryanpunwasi/scheduler/master/docs/appointments.png")
+!["List of appointments"]("https://github.com/ryanpunwasi/scheduler/blob/master/docs/appointments.png?raw=true")
 
-!["Appointment form"]("https://raw.githubusercontent.com/ryanpunwasi/scheduler/master/docs/appointments.png")
+!["Appointment form"]("https://github.com/ryanpunwasi/scheduler/blob/master/docs/appointment-form.png?raw=true")
 
-!["Cancellation Prompt"]("https://raw.githubusercontent.com/ryanpunwasi/scheduler/master/docs/appointments.png")
+!["Cancellation Prompt"]("https://github.com/ryanpunwasi/scheduler/blob/master/docs/cancellation-prompt.png?raw=true")
 
 ## Setup
 
