@@ -17,6 +17,7 @@ export default function DayListItem(props) {
         : spots === 1
         ? "1 spot remaining"
         : "no spots remaining";
+
     return formatted;
   };
 
